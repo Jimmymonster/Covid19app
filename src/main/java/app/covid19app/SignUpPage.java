@@ -9,14 +9,14 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-public class LoginPage extends AnchorPane {
+public class SignUpPage extends AnchorPane{
     private StackPane st = new StackPane();
     private HBox hb = new HBox();
     private VBox vb = new VBox();
     private VBox[] decorate = {new VBox(),new VBox()};
 
     private VBox vbin = new VBox(40);
-    private Text txt = new Text("Sign in");
+    private Text txt = new Text("Sign up");
 
     private HBox usernameBox = new HBox();
     private TextField username = new TextField("username");
@@ -24,13 +24,16 @@ public class LoginPage extends AnchorPane {
     private HBox passwordBox = new HBox();
     private PasswordField password = new PasswordField();
 
-    private Button SignInBTN = new Button("Sign in");
+    private HBox confirmpasswordBox = new HBox();
+    private PasswordField confirmpassword = new PasswordField();
 
-    private HBox SignUpBox = new HBox(10);
-    private Text txt2 = new Text("Need an Account?");
-    private Text SignUp = new Text("Sign Up");
+    private Button SignUpBTN = new Button("Sign up");
 
-    public LoginPage(){
+    private HBox SignInBox = new HBox(10);
+    private Text txt2 = new Text("Already have an Account?");
+    private Text SignIn = new Text("Sign in");
+
+    public SignUpPage(){
         setStyle("-fx-background-color: transparent;");
         AnchorPane.setRightAnchor(st,10.0);
         AnchorPane.setLeftAnchor(st,10.0);
@@ -87,22 +90,32 @@ public class LoginPage extends AnchorPane {
         passwordBox.setPrefWidth(250);
         passwordBox.setMaxWidth(USE_PREF_SIZE);
 
-        SignInBTN.setPrefWidth(180);
-        SignInBTN.setStyle("-fx-background-color: #fe4451;" +
+        confirmpassword.setStyle("-fx-background-color: transparent;");
+        confirmpasswordBox.getChildren().add(confirmpassword);
+        confirmpasswordBox.setAlignment(Pos.CENTER_RIGHT);
+        confirmpasswordBox.setHgrow(confirmpassword,Priority.ALWAYS);
+        confirmpasswordBox.setStyle("-fx-background-color: white;" +
+                "-fx-border-color: #a2a2a2;" +
+                "-fx-border-width: 0px 0px 2px 0px");
+        confirmpasswordBox.setPrefWidth(250);
+        confirmpasswordBox.setMaxWidth(USE_PREF_SIZE);
+
+        SignUpBTN.setPrefWidth(180);
+        SignUpBTN.setStyle("-fx-background-color: #fe4451;" +
                 "-fx-background-radius: 100PX;" +
                 "-fx-text-fill: white;" +
                 "-fx-font-size: 14;");
 
-        SignUpBox.setPadding(new Insets(10,10,10,10));
-        SignUp.setStyle("-fx-fill: #fe4451;" +
+        SignInBox.setPadding(new Insets(10,10,10,10));
+        SignIn.setStyle("-fx-fill: #fe4451;" +
                 "-fx-font-family: QuickSand;" +
                 "-fx-font-weight: bold;");
         txt2.setStyle("-fx-font-family: QuickSand;" +
                 "-fx-font-weight: bold;");
-        SignUpBox.setAlignment(Pos.BOTTOM_CENTER);
-        SignUpBox.getChildren().addAll(txt2,SignUp);
+        SignInBox.setAlignment(Pos.BOTTOM_CENTER);
+        SignInBox.getChildren().addAll(txt2,SignIn);
 
-        vbin.getChildren().addAll(txt,usernameBox,passwordBox,SignInBTN,SignUpBox);
+        vbin.getChildren().addAll(txt,usernameBox,passwordBox,confirmpasswordBox,SignUpBTN,SignInBox);
         vbin.setPadding(new Insets(10,10,10,10));
 
         vb.getChildren().add(vbin);
