@@ -5,6 +5,7 @@ module app.covid19app {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens app.covid19app to javafx.fxml;
     exports app.covid19app;

@@ -8,32 +8,41 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SignUpPage extends AnchorPane{
-    private StackPane st = new StackPane();
-    private HBox hb = new HBox();
-    private VBox vb = new VBox();
-    private VBox[] decorate = {new VBox(),new VBox()};
+    private final StackPane st = new StackPane();
+    private final HBox hb = new HBox();
+    private final VBox vb = new VBox();
+    private final VBox[] decorate = {new VBox(),new VBox()};
 
-    private VBox vbin = new VBox(40);
-    private Text txt = new Text("Sign up");
+    private final VBox vbin = new VBox(35);
+    private final Text txt = new Text("Sign up");
 
-    private HBox usernameBox = new HBox();
-    private TextField username = new TextField("username");
+    private final HBox usernameBox = new HBox();
+    private final TextField username = new TextField("username");
 
-    private HBox passwordBox = new HBox();
-    private PasswordField password = new PasswordField();
+    private final HBox passwordBox = new HBox();
+    private final PasswordField password = new PasswordField();
 
-    private HBox confirmpasswordBox = new HBox();
-    private PasswordField confirmpassword = new PasswordField();
+    private final HBox confirmpasswordBox = new HBox();
+    private final PasswordField confirmpassword = new PasswordField();
 
-    private Button SignUpBTN = new Button("Sign up");
+    private final Button SignUpBTN = new Button("Sign up");
 
-    private HBox SignInBox = new HBox(10);
-    private Text txt2 = new Text("Already have an Account?");
-    private Text SignIn = new Text("Sign in");
+    private final HBox SignInBox = new HBox(10);
+    private final Text txt2 = new Text("Already have an Account?");
+    private final Button SignInBTN = new Button("Sign in");
+
+    private final Text error = new Text();
 
     public SignUpPage(){
+        //UI things
         setStyle("-fx-background-color: transparent;");
         AnchorPane.setRightAnchor(st,10.0);
         AnchorPane.setLeftAnchor(st,10.0);
@@ -106,20 +115,70 @@ public class SignUpPage extends AnchorPane{
                 "-fx-text-fill: white;" +
                 "-fx-font-size: 14;");
 
-        SignInBox.setPadding(new Insets(10,10,10,10));
-        SignIn.setStyle("-fx-fill: #fe4451;" +
-                "-fx-font-family: QuickSand;" +
+        error.setStyle("-fx-fill: red;" +
+                "-fx-font-size: 14;" +
                 "-fx-font-weight: bold;");
+
+        SignInBox.setPadding(new Insets(10,10,10,10));
+        SignInBTN.setStyle("-fx-text-fill: #fe4451;" +
+                "-fx-font-family: QuickSand;" +
+                "-fx-font-weight: bold;" +
+                "-fx-background-color: transparent;");
         txt2.setStyle("-fx-font-family: QuickSand;" +
                 "-fx-font-weight: bold;");
         SignInBox.setAlignment(Pos.BOTTOM_CENTER);
-        SignInBox.getChildren().addAll(txt2,SignIn);
+        SignInBox.getChildren().addAll(txt2,SignInBTN);
 
-        vbin.getChildren().addAll(txt,usernameBox,passwordBox,confirmpasswordBox,SignUpBTN,SignInBox);
+        vbin.getChildren().addAll(txt,usernameBox,passwordBox,confirmpasswordBox,SignUpBTN,error,SignInBox);
         vbin.setPadding(new Insets(10,10,10,10));
 
         vb.getChildren().add(vbin);
         st.getChildren().addAll(hb,vb);
         getChildren().add(st);
+
+        //Action event
+        SignUpBTN.setOnAction(e->{SignUpBTNAction();});
+        SignInBTN.setOnAction(e->{SignInBTNAction();});
+    }
+
+    private void SignUpBTNAction(){
+        Connection connection = DbConnect.getInstance().getConnection();
+        try {
+            String username = this.username.getText();
+            String password = this.password.getText();
+            String confirmpassword = this.confirmpassword.getText();
+            //check error
+            if(username.isBlank()||username.isEmpty()||password.isBlank()||password.isEmpty()||confirmpassword.isBlank()||confirmpassword.isEmpty()){
+                error.setText("Each field must be fill!!!");
+                connection.close();
+                return;
+            }
+            else if(!confirmpassword.equals(password)){
+                error.setText("Password isn't match!!!");
+                connection.close();
+                return;
+            }
+            //create statement
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from UserAccount where Username = '"+username+"'");
+            if(resultSet.next() ){
+                error.setText("Username is already used!!!");
+                connection.close();
+                return;
+            }
+            int status = statement.executeUpdate("insert into UserAccount (Username,Password,Rank) values('"+username+"','"+password+"','Member')");
+            if(status>0){
+                error.setText("");
+                System.out.println("User registered");
+                //go to sign in
+                connection.close();
+                return;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void SignInBTNAction() {
+        //go to sign in
     }
 }

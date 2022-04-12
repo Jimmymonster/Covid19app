@@ -9,28 +9,36 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class LoginPage extends AnchorPane {
-    private StackPane st = new StackPane();
-    private HBox hb = new HBox();
-    private VBox vb = new VBox();
-    private VBox[] decorate = {new VBox(),new VBox()};
+    private final StackPane st = new StackPane();
+    private final HBox hb = new HBox();
+    private final VBox vb = new VBox();
+    private final VBox[] decorate = {new VBox(),new VBox()};
 
-    private VBox vbin = new VBox(40);
-    private Text txt = new Text("Sign in");
+    private final VBox vbin = new VBox(40);
+    private final Text txt = new Text("Sign in");
 
-    private HBox usernameBox = new HBox();
-    private TextField username = new TextField("username");
+    private final HBox usernameBox = new HBox();
+    private final TextField username = new TextField("username");
 
-    private HBox passwordBox = new HBox();
-    private PasswordField password = new PasswordField();
+    private final HBox passwordBox = new HBox();
+    private final PasswordField password = new PasswordField();
 
-    private Button SignInBTN = new Button("Sign in");
+    private final Button SignInBTN = new Button("Sign in");
 
-    private HBox SignUpBox = new HBox(10);
-    private Text txt2 = new Text("Need an Account?");
-    private Text SignUp = new Text("Sign Up");
+    private final HBox SignUpBox = new HBox(10);
+    private final Text txt2 = new Text("Need an Account?");
+    private final Button SignUpBTN = new Button("Sign Up");
+
+    private final Text error = new Text();
 
     public LoginPage(){
+        //UI things
         setStyle("-fx-background-color: transparent;");
         AnchorPane.setRightAnchor(st,10.0);
         AnchorPane.setLeftAnchor(st,10.0);
@@ -93,20 +101,71 @@ public class LoginPage extends AnchorPane {
                 "-fx-text-fill: white;" +
                 "-fx-font-size: 14;");
 
-        SignUpBox.setPadding(new Insets(10,10,10,10));
-        SignUp.setStyle("-fx-fill: #fe4451;" +
-                "-fx-font-family: QuickSand;" +
+        error.setStyle("-fx-fill: red;" +
+                "-fx-font-size: 14;" +
                 "-fx-font-weight: bold;");
+
+        SignUpBox.setPadding(new Insets(10,10,10,10));
+        SignUpBTN.setStyle("-fx-text-fill: #fe4451;" +
+                "-fx-font-family: QuickSand;" +
+                "-fx-font-weight: bold;" +
+                "-fx-background-color: transparent;");
         txt2.setStyle("-fx-font-family: QuickSand;" +
                 "-fx-font-weight: bold;");
         SignUpBox.setAlignment(Pos.BOTTOM_CENTER);
-        SignUpBox.getChildren().addAll(txt2,SignUp);
+        SignUpBox.getChildren().addAll(txt2,SignUpBTN);
 
-        vbin.getChildren().addAll(txt,usernameBox,passwordBox,SignInBTN,SignUpBox);
+
+        vbin.getChildren().addAll(txt,usernameBox,passwordBox,SignInBTN,error,SignUpBox);
         vbin.setPadding(new Insets(10,10,10,10));
 
         vb.getChildren().add(vbin);
         st.getChildren().addAll(hb,vb);
         getChildren().add(st);
+
+        //Action event
+        SignInBTN.setOnAction(e->{SignInpBTNAction();});
+        SignUpBTN.setOnAction(e->{SignUpBTNAction();});
+    }
+    private void SignInpBTNAction(){
+        Connection connection = DbConnect.getInstance().getConnection();
+        try {
+            String username = this.username.getText();
+            String password = this.password.getText();
+            //check error
+            if (username.isBlank() || username.isEmpty() || password.isBlank() || password.isEmpty()) {
+                error.setText("Each field must be fill!!!");
+                connection.close();
+                return;
+            }
+            //create statement
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from UserAccount where Username = '"+username+"' and Password = '"+password+"'");
+            if(resultSet.next()){
+                error.setText("");
+                String rank=resultSet.getString(3);
+                //System.out.println(rank);
+                if(rank.equals("Admin")){
+                    //go to Admin page
+                }
+                else if(rank.equals("Staff")){
+                    //go to Staff page
+                }
+                else if(rank.equals("Member")){
+                    //go to Member page
+                }
+                System.out.println("login complete!!!");
+                connection.close();
+            }
+            else{
+                error.setText("Username or password is wrong!!!");
+                connection.close();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    private void SignUpBTNAction(){
+        //go to sign up page
     }
 }
