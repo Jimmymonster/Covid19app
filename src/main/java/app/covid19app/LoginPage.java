@@ -142,7 +142,7 @@ public class LoginPage extends AnchorPane {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from UserAccount where Username = '"+username+"' and Password = '"+password+"'");
             if(resultSet.next()){
-                error.setText("");
+                clearField();
                 String rank=resultSet.getString(3);
                 //System.out.println(rank);
                 if(rank.equals("Admin")){
@@ -170,6 +170,12 @@ public class LoginPage extends AnchorPane {
     }
     private void SignUpBTNAction(){
         //go to sign up page
+        clearField();
         Covid19App.change_to_sign_up_page();
+    }
+    private void clearField(){
+        error.setText("");
+        username.setText("username");
+        password.setText("");
     }
 }

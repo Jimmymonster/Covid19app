@@ -168,9 +168,9 @@ public class SignUpPage extends AnchorPane{
             }
             int status = statement.executeUpdate("insert into UserAccount (Username,Password,Rank) values('"+username+"','"+password+"','Member')");
             if(status>0){
-                error.setText("");
                 System.out.println("User registered");
                 //go to sign in
+                clearField();
                 Covid19App.change_to_sign_in_page();
                 connection.close();
                 return;
@@ -181,6 +181,13 @@ public class SignUpPage extends AnchorPane{
     }
     private void SignInBTNAction() {
         //go to sign in
+        clearField();
         Covid19App.change_to_sign_in_page();
+    }
+    private void clearField(){
+        error.setText("");
+        username.setText("username");
+        password.setText("");
+        confirmpassword.setText("");
     }
 }
