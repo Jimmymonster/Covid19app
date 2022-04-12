@@ -1,16 +1,26 @@
 package app.covid19app;
 
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+
+import java.util.HashMap;
 
 public class SceneController {
-    private Stage stage;
-    private Scene scene;
-    private Node node;
+    private HashMap<String, Node> screenMap = new HashMap<>();
+    private Scene main;
 
-    public SceneController(){
-        stage.setTitle("Covid19App!");
-        stage.setResizable(false);
+    public SceneController(Scene main){
+        this.main = main;
     }
+    protected void addScreen(String name, Node node){
+        screenMap.put(name,node);
+    }
+    protected void removeScreen(String name){
+        screenMap.remove(name);
+    }
+    protected void activate(String name){
+        main.setRoot((Parent) screenMap.get(name));
+    }
+
 }

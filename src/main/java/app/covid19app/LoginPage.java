@@ -147,12 +147,15 @@ public class LoginPage extends AnchorPane {
                 //System.out.println(rank);
                 if(rank.equals("Admin")){
                     //go to Admin page
+                    Covid19App.change_to_main_page();
                 }
                 else if(rank.equals("Staff")){
                     //go to Staff page
+                    Covid19App.change_to_main_page();
                 }
                 else if(rank.equals("Member")){
                     //go to Member page
+                    Covid19App.change_to_main_page();
                 }
                 System.out.println("login complete!!!");
                 connection.close();
@@ -167,5 +170,6 @@ public class LoginPage extends AnchorPane {
     }
     private void SignUpBTNAction(){
         //go to sign up page
+        Covid19App.change_to_sign_up_page();
     }
 }

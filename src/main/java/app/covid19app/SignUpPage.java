@@ -171,6 +171,7 @@ public class SignUpPage extends AnchorPane{
                 error.setText("");
                 System.out.println("User registered");
                 //go to sign in
+                Covid19App.change_to_sign_in_page();
                 connection.close();
                 return;
             }
@@ -180,5 +181,6 @@ public class SignUpPage extends AnchorPane{
     }
     private void SignInBTNAction() {
         //go to sign in
+        Covid19App.change_to_sign_in_page();
     }
 }
