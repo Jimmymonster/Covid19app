@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -41,6 +40,8 @@ public class SignUpPage extends AnchorPane{
 
     private final Text error = new Text();
 
+    private final String colorTheme = "#4F8EDB";
+
     public SignUpPage(){
         //UI things
         setStyle("-fx-background-color: transparent;");
@@ -50,7 +51,7 @@ public class SignUpPage extends AnchorPane{
         AnchorPane.setBottomAnchor(st,10.0);
         st.setEffect(new DropShadow());
 
-        decorate[0].setStyle("-fx-background-color: #fe4451;");
+        decorate[0].setStyle("-fx-background-color: "+colorTheme+";");
         decorate[0].setPrefWidth(USE_COMPUTED_SIZE);
         decorate[0].setPrefHeight(USE_COMPUTED_SIZE);
         decorate[1].setStyle("-fx-background-color: white;");
@@ -113,7 +114,7 @@ public class SignUpPage extends AnchorPane{
         confirmpasswordBox.setMaxWidth(USE_PREF_SIZE);
 
         SignUpBTN.setPrefWidth(180);
-        SignUpBTN.setStyle("-fx-background-color: #fe4451;" +
+        SignUpBTN.setStyle("-fx-background-color: "+colorTheme+";" +
                 "-fx-background-radius: 100PX;" +
                 "-fx-text-fill: white;" +
                 "-fx-font-size: 14;");
@@ -123,7 +124,7 @@ public class SignUpPage extends AnchorPane{
                 "-fx-font-weight: bold;");
 
         SignInBox.setPadding(new Insets(10,10,10,10));
-        SignInBTN.setStyle("-fx-text-fill: #fe4451;" +
+        SignInBTN.setStyle("-fx-text-fill: "+colorTheme+";" +
                 "-fx-font-family: QuickSand;" +
                 "-fx-font-weight: bold;" +
                 "-fx-background-color: transparent;");

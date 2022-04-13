@@ -37,6 +37,8 @@ public class LoginPage extends AnchorPane {
 
     private final Text error = new Text();
 
+    private final String colorTheme = "#4F8EDB";
+
     public LoginPage(){
         //UI things
         setStyle("-fx-background-color: transparent;");
@@ -46,7 +48,7 @@ public class LoginPage extends AnchorPane {
         AnchorPane.setBottomAnchor(st,10.0);
         st.setEffect(new DropShadow());
 
-        decorate[0].setStyle("-fx-background-color: #fe4451;");
+        decorate[0].setStyle("-fx-background-color: "+colorTheme+";");
         decorate[0].setPrefWidth(USE_COMPUTED_SIZE);
         decorate[0].setPrefHeight(USE_COMPUTED_SIZE);
         decorate[1].setStyle("-fx-background-color: white;");
@@ -98,7 +100,7 @@ public class LoginPage extends AnchorPane {
         passwordBox.setMaxWidth(USE_PREF_SIZE);
 
         SignInBTN.setPrefWidth(180);
-        SignInBTN.setStyle("-fx-background-color: #fe4451;" +
+        SignInBTN.setStyle("-fx-background-color: "+colorTheme+";" +
                 "-fx-background-radius: 100PX;" +
                 "-fx-text-fill: white;" +
                 "-fx-font-size: 14;");
@@ -108,7 +110,7 @@ public class LoginPage extends AnchorPane {
                 "-fx-font-weight: bold;");
 
         SignUpBox.setPadding(new Insets(10,10,10,10));
-        SignUpBTN.setStyle("-fx-text-fill: #fe4451;" +
+        SignUpBTN.setStyle("-fx-text-fill: "+colorTheme+";" +
                 "-fx-font-family: QuickSand;" +
                 "-fx-font-weight: bold;" +
                 "-fx-background-color: transparent;");
