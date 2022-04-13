@@ -24,7 +24,7 @@ public class LoginPage extends AnchorPane {
     private final Text txt = new Text("Sign in");
 
     private final HBox usernameBox = new HBox();
-    private final TextField username = new TextField("username");
+    private final TextField username = new TextField();
 
     private final HBox passwordBox = new HBox();
     private final PasswordField password = new PasswordField();
@@ -74,6 +74,7 @@ public class LoginPage extends AnchorPane {
                 "-fx-font-weight: bold;" +
                 "-fx-fill: black;");
 
+        username.setPromptText("username");
         username.setStyle("-fx-background-color: transparent;");
         usernameBox.getChildren().add(username);
         usernameBox.setAlignment(Pos.CENTER_RIGHT);
@@ -85,6 +86,7 @@ public class LoginPage extends AnchorPane {
         usernameBox.setMaxWidth(USE_PREF_SIZE);
         HBox.setMargin(usernameBox,new Insets(5,5,5,5));
 
+        password.setPromptText("password");
         password.setStyle("-fx-background-color: transparent;");
         passwordBox.getChildren().add(password);
         passwordBox.setAlignment(Pos.CENTER_RIGHT);
@@ -175,7 +177,7 @@ public class LoginPage extends AnchorPane {
     }
     private void clearField(){
         error.setText("");
-        username.setText("username");
+        username.setText("");
         password.setText("");
     }
 }
