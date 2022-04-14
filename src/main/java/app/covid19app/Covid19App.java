@@ -1,22 +1,26 @@
 package app.covid19app;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Covid19App extends Application {
+    static HashMap<String, Parent> map = new HashMap();
+    //all page
     static LoginPage login = new LoginPage();
     static SignUpPage signUpPage = new SignUpPage();
     static MainPage mainPage = new MainPage();
+    // Scene
     static Scene scene = new Scene(login,1280,720);
     @Override
     public void start(Stage stage) throws IOException {
-
-
+        addScene();
         FileInputStream input = new FileInputStream("src\\main\\Images\\medic.jpg");
         stage.getIcons().add(new Image(input));
         stage.setTitle("Covid19App!");
@@ -28,7 +32,12 @@ public class Covid19App extends Application {
     public static void main(String[] args) {
         launch();
     }
-    public static void change_to_sign_up_page(){scene.setRoot(signUpPage);}
-    public static void change_to_sign_in_page(){scene.setRoot(login);}
-    public static void change_to_main_page(){scene.setRoot(mainPage);}
+    public static void changeScene(String name){
+        scene.setRoot(map.get(name));
+    }
+    public void addScene(){
+        map.put("login",login);
+        map.put("signup",signUpPage);
+        map.put("mainpage",mainPage);
+    }
 }
