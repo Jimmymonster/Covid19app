@@ -15,22 +15,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class LoginPage extends AnchorPane {
-    private final StackPane st = new StackPane();
-    private final HBox hb = new HBox();
-    private final VBox vb = new VBox();
-    private final VBox[] decorate = {new VBox(),new VBox()};
 
+    private final StackPane st = new StackPane();
+    //decoration
+    private final HBox hb = new HBox();
+    private final VBox[] decorate = {new VBox(),new VBox()};
+    //vb at center
+    private final VBox vb = new VBox();
+    //vbox in vb center
     private final VBox vbin = new VBox(40);
     private final Text txt = new Text("Sign in");
-
+    //username box
     private final HBox usernameBox = new HBox();
     private final TextField username = new TextField();
-
+    //password box
     private final HBox passwordBox = new HBox();
     private final PasswordField password = new PasswordField();
 
     private final Button SignInBTN = new Button("Sign in");
-
+    //sign up box
     private final HBox SignUpBox = new HBox(10);
     private final Text txt2 = new Text("Need an Account?");
     private final Button SignUpBTN = new Button("Sign Up");
@@ -76,28 +79,8 @@ public class LoginPage extends AnchorPane {
                 "-fx-font-weight: bold;" +
                 "-fx-fill: black;");
 
-        username.setPromptText("username");
-        username.setStyle("-fx-background-color: transparent;");
-        usernameBox.getChildren().add(username);
-        usernameBox.setAlignment(Pos.CENTER_RIGHT);
-        usernameBox.setHgrow(username,Priority.ALWAYS);
-        usernameBox.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: #a2a2a2;" +
-                "-fx-border-width: 0px 0px 2px 0px");
-        usernameBox.setPrefWidth(250);
-        usernameBox.setMaxWidth(USE_PREF_SIZE);
-        HBox.setMargin(usernameBox,new Insets(5,5,5,5));
-
-        password.setPromptText("password");
-        password.setStyle("-fx-background-color: transparent;");
-        passwordBox.getChildren().add(password);
-        passwordBox.setAlignment(Pos.CENTER_RIGHT);
-        passwordBox.setHgrow(password,Priority.ALWAYS);
-        passwordBox.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: #a2a2a2;" +
-                "-fx-border-width: 0px 0px 2px 0px");
-        passwordBox.setPrefWidth(250);
-        passwordBox.setMaxWidth(USE_PREF_SIZE);
+        UI.TextFieldUI(username,usernameBox,"username");
+        UI.PasswordFieldUI(password,passwordBox,"password");
 
         SignInBTN.setPrefWidth(180);
         SignInBTN.setStyle("-fx-background-color: "+colorTheme+";" +
