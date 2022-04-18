@@ -15,7 +15,9 @@ public class Covid19App extends Application {
     //all page
     static LoginPage login = new LoginPage();
     static SignUpPage signUpPage = new SignUpPage();
-    static MainPage mainPage = new MainPage();
+    static MainPage_Admin mainPageAdmin = new MainPage_Admin();
+    static MainPage_Staff mainPageStaff = new MainPage_Staff();
+    static MainPage_Member mainPageMember = new MainPage_Member();
     // Scene
     static Scene scene = new Scene(login,1280,720);
     @Override
@@ -38,6 +40,8 @@ public class Covid19App extends Application {
     public void addScene(){
         map.put("login",login);
         map.put("signup",signUpPage);
-        map.put("mainpage",mainPage);
+        map.put("mainpage_admin", mainPageAdmin);
+        map.put("mainpage_staff",mainPageStaff);
+        map.put("mainpage_member",mainPageMember);
     }
 }

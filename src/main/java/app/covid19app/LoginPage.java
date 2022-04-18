@@ -81,12 +81,7 @@ public class LoginPage extends AnchorPane {
 
         UI.TextFieldUI(username,usernameBox,"username");
         UI.PasswordFieldUI(password,passwordBox,"password");
-
-        SignInBTN.setPrefWidth(180);
-        SignInBTN.setStyle("-fx-background-color: "+colorTheme+";" +
-                "-fx-background-radius: 100PX;" +
-                "-fx-text-fill: white;" +
-                "-fx-font-size: 14;");
+        UI.ButtonUI(SignInBTN,colorTheme);
 
         error.setStyle("-fx-fill: red;" +
                 "-fx-font-size: 14;" +
@@ -134,15 +129,15 @@ public class LoginPage extends AnchorPane {
                 //System.out.println(rank);
                 if(rank.equals("Admin")){
                     //go to Admin page
-                    Covid19App.changeScene("mainpage");
+                    Covid19App.changeScene("mainpage_admin");
                 }
                 else if(rank.equals("Staff")){
                     //go to Staff page
-                    Covid19App.changeScene("mainpage");
+                    Covid19App.changeScene("mainpage_staff");
                 }
                 else if(rank.equals("Member")){
                     //go to Member page
-                    Covid19App.changeScene("mainpage");
+                    Covid19App.changeScene("mainpage_member");
                 }
                 System.out.println("login complete!!!");
                 connection.close();

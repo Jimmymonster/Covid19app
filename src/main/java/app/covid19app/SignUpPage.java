@@ -40,14 +40,24 @@ public class SignUpPage extends AnchorPane{
     private final Text txt2 = new Text("Already have an Account?");
     private final Button SignInBTN = new Button("Sign in");
     //Name and surname box
+    private final Text txt3 = new Text("Infomation");
     private final HBox NameAndSurnameBox = new HBox(10);
     private final HBox NameBox = new HBox(10);
-    private final Text txt3 = new Text("Infomation");
     private final TextField Name = new TextField();
     private final HBox SurnameBox = new HBox(10);
     private final TextField Surname = new TextField();
+    //Age number-ID
+    private final HBox AgeandNumberIDBox = new HBox(10);
+    private final HBox AgeBox = new HBox(10);
+    private final TextField Age = new TextField();
+    private final HBox NumberIDBox = new HBox(10);
+    private final TextField NumberID = new TextField();
+    //Tel
+    private final HBox TelBox = new HBox(10);
+    private final TextField Tel = new TextField();
 
     private final Text error = new Text();
+    private final Text error2 = new Text();
 
     private final String colorTheme = "#4F8EDB";
 
@@ -93,12 +103,7 @@ public class SignUpPage extends AnchorPane{
         UI.TextFieldUI(username,usernameBox,"username");
         UI.PasswordFieldUI(password,passwordBox,"password");
         UI.PasswordFieldUI(confirmpassword,confirmpasswordBox,"confirm password");
-
-        SignUpBTN.setPrefWidth(180);
-        SignUpBTN.setStyle("-fx-background-color: "+colorTheme+";" +
-                "-fx-background-radius: 100PX;" +
-                "-fx-text-fill: white;" +
-                "-fx-font-size: 14;");
+        UI.ButtonUI(SignUpBTN,colorTheme);
 
         error.setStyle("-fx-fill: red;" +
                 "-fx-font-size: 14;" +
@@ -122,9 +127,18 @@ public class SignUpPage extends AnchorPane{
         UI.TextFieldUI(Name, NameBox, "name");
         UI.TextFieldUI(Surname, SurnameBox, "surname");
         NameAndSurnameBox.getChildren().addAll(NameBox,SurnameBox);
+        UI.TextFieldUI(Age,AgeBox,"Age");
+        UI.TextFieldUI(NumberID,NumberIDBox,"Number ID");
+        AgeandNumberIDBox.getChildren().addAll(AgeBox,NumberIDBox);
+        UI.TextFieldUI(Tel,TelBox,"Tel.");
+
+        error2.setStyle("-fx-fill: red;" +
+                "-fx-font-size: 14;" +
+                "-fx-font-weight: bold;");
 
         vbin[0].getChildren().addAll(txt,usernameBox,passwordBox,confirmpasswordBox,SignUpBTN,error,SignInBox);
-        vbin[1].getChildren().addAll(txt3,NameAndSurnameBox);
+        vbin[1].setPrefHeight(437);
+        vbin[1].getChildren().addAll(txt3,NameAndSurnameBox,AgeandNumberIDBox,TelBox,error2);
         vbin[0].setPadding(new Insets(10,10,10,10));
         vbin[1].setPadding(new Insets(10,10,10,10));
 
@@ -139,20 +153,57 @@ public class SignUpPage extends AnchorPane{
     private void SignUpBTNAction(){
         Connection connection = DbConnect.getInstance().getConnection();
         try {
+            boolean ch = true;
             String username = this.username.getText();
             String password = this.password.getText();
             String confirmpassword = this.confirmpassword.getText();
             String name = this.Name.getText();
             String surname = this.Surname.getText();
+            String age= this.Age.getText();
+            String numberID = this.NumberID.getText();
+            String tel = this.Tel.getText();
             //check error
-            if(username.isBlank()||username.isEmpty()||password.isBlank()||password.isEmpty()||confirmpassword.isBlank()||confirmpassword.isEmpty()||
-            name.isBlank()||name.isEmpty()||surname.isBlank()||surname.isEmpty()){
+            if(username.isBlank()||username.isEmpty()||password.isBlank()||password.isEmpty()||confirmpassword.isBlank()){
                 error.setText("Each field must be fill!!!");
-                connection.close();
-                return;
+                ch=false;
             }
             else if(!confirmpassword.equals(password)){
                 error.setText("Password isn't match!!!");
+                ch=false;
+            }
+            if(name.isBlank()||name.isEmpty()||surname.isBlank()||surname.isEmpty()||age.isBlank()||age.isEmpty()||numberID.isBlank()||numberID.isEmpty()||tel.isEmpty()||tel.isBlank()){
+                error2.setText("Each field must be fill!!!");
+                ch=false;
+            }
+            else if(!isAlpha(name)){
+                error2.setText("Name must not contain digits!!!");
+                ch=false;
+            }
+            else if(!isAlpha(surname)){
+                error2.setText("Surname must not contain digits!!!");
+                ch=false;
+            }
+            else if(isInt(name)){
+                error2.setText("Name must not contain digits!!!");
+                ch=false;
+            }
+            else if(!isInt(age)){
+                error2.setText("Age must be number!!!");
+                ch=false;
+            }
+            else if(!isInt(numberID)){
+                error2.setText("Number ID must be number!!!");
+                ch=false;
+            }
+            else if(numberID.length()!=13){
+                error2.setText("Number ID must have 13 digits");
+                ch=false;
+            }
+            else if(!isInt(tel)){
+                error2.setText("Telephone number must be number!!!");
+                ch=false;
+            }
+            if(!ch) {
                 connection.close();
                 return;
             }
@@ -165,7 +216,8 @@ public class SignUpPage extends AnchorPane{
                 return;
             }
             int status = statement.executeUpdate("insert into UserAccount (Username,Password,Rank) values('"+username+"','"+password+"','Member')");
-            if(status>0){
+            int status2 = statement.executeUpdate("insert into UserInfo (Username,Name,Surname,Age,NumberID,Tel) values('"+username+"','"+name+"','"+surname+"','"+age+"','"+numberID+"','"+tel+"')");
+            if(status>0&&status2>0){
                 System.out.println("User registered");
                 //go to sign in
                 clearField();
@@ -184,8 +236,27 @@ public class SignUpPage extends AnchorPane{
     }
     private void clearField(){
         error.setText("");
+        error2.setText("");
         username.setText("");
         password.setText("");
         confirmpassword.setText("");
+    }
+    private boolean isInt(String name) {
+        char[] chars = name.toCharArray();
+        for (char c : chars) {
+            if(!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isAlpha(String name) {
+        char[] chars = name.toCharArray();
+        for (char c : chars) {
+            if(!Character.isLetter(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

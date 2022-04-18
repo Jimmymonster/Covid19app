@@ -2,6 +2,7 @@ package app.covid19app;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -35,5 +36,12 @@ public class UI {
         box.setPrefWidth(250);
         box.setMaxWidth(USE_PREF_SIZE);
         HBox.setMargin(box,new Insets(5,5,5,5));
+    }
+    public static void ButtonUI(Button btn,String colorTheme){
+        btn.setPrefWidth(180);
+        btn.setStyle("-fx-background-color: "+colorTheme+";" +
+                "-fx-background-radius: 100PX;" +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 14;");
     }
 }
