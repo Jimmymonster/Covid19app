@@ -37,6 +37,12 @@ public class Covid19App extends Application {
     public static void changeScene(String name){
         scene.setRoot(map.get(name));
     }
+    public static void changeScene(String name,String username){
+        if(name=="mainpage_member"){mainPageMember.setUsername(username);}
+        else if(name=="mainpage_staff"){mainPageStaff.setUsername(username);}
+        else if(name=="mainpage_admin"){mainPageAdmin.setUsername(username);}
+        scene.setRoot(map.get(name));
+    }
     public void addScene(){
         map.put("login",login);
         map.put("signup",signUpPage);

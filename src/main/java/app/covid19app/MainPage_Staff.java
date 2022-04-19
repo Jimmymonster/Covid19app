@@ -8,6 +8,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class MainPage_Staff extends AnchorPane {
+    private String username="";
+
     private final StackPane st = new StackPane();
     private final HBox hb = new HBox(); //for crop vbox
     private final VBox[] box = {new VBox(10), new VBox()}; // 0 = left nev bar , 1 = content box
@@ -83,8 +85,6 @@ public class MainPage_Staff extends AnchorPane {
         box[1].getChildren().clear();
         box[1].getChildren().add(leftbox[0]);
         for (int i = 0; i < 4; i++) {
-            btn[i].setPrefWidth(1280 * 0.2);
-            btn[i].setPrefHeight(50);
             if (i == idx) btn[i].setStyle(activeBTN);
             else btn[i].setStyle(non_activeBTN);
         }
@@ -99,8 +99,11 @@ public class MainPage_Staff extends AnchorPane {
             Covid19App.changeScene("login");
         }
     }
-
-    private void reset() {
+    private void reset(){
+        username="";
         btnAction(0);
+    }
+    public void setUsername(String username){
+        this.username=username;
     }
 }

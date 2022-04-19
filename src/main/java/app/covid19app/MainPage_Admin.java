@@ -8,6 +8,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class MainPage_Admin extends AnchorPane {
+    private String username="";
+
     private final StackPane st= new StackPane();
     private final HBox hb = new HBox(); //for crop vbox
     private final VBox[] box = {new VBox(10),new VBox()}; // 0 = left nev bar , 1 = content box
@@ -98,6 +100,10 @@ public class MainPage_Admin extends AnchorPane {
         }
     }
     private void reset(){
+        username="";
         btnAction(0);
+    }
+    public void setUsername(String username){
+        this.username=username;
     }
 }

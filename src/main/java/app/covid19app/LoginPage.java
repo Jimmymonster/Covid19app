@@ -129,23 +129,22 @@ public class LoginPage extends AnchorPane {
                 //System.out.println(rank);
                 if(rank.equals("Admin")){
                     //go to Admin page
-                    Covid19App.changeScene("mainpage_admin");
+                    Covid19App.changeScene("mainpage_admin",username);
                 }
                 else if(rank.equals("Staff")){
                     //go to Staff page
-                    Covid19App.changeScene("mainpage_staff");
+                    Covid19App.changeScene("mainpage_staff",username);
                 }
                 else if(rank.equals("Member")){
                     //go to Member page
-                    Covid19App.changeScene("mainpage_member");
+                    Covid19App.changeScene("mainpage_member",username);
                 }
                 System.out.println("login complete!!!");
-                connection.close();
             }
             else{
                 error.setText("Username or password is wrong!!!");
-                connection.close();
             }
+            connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
