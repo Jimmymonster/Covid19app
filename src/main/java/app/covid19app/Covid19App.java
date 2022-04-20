@@ -1,6 +1,47 @@
 package app.covid19app;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class Covid19App extends Application {
+    static FXMLLoader root =new FXMLLoader(Covid19App.class.getResource("SignInPage.fxml"));
+    static Scene scene;
+    static {
+        try {
+            scene = new Scene(root.load(),1280,720);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void start(Stage stage) throws IOException {
+        FileInputStream input = new FileInputStream("src\\main\\Images\\medic.jpg");
+        stage.getIcons().add(new Image(input));
+        stage.setResizable(false);
+        stage.setTitle("Covid19App!");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public static void main(String[] args) {
+        launch();
+    }
+    public static void switchScene(String str){
+        FXMLLoader root =new FXMLLoader(Covid19App.class.getResource(str));
+        try {
+            scene.setRoot(root.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+/*import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -50,4 +91,4 @@ public class Covid19App extends Application {
         map.put("mainpage_staff",mainPageStaff);
         map.put("mainpage_member",mainPageMember);
     }
-}
+}*/
