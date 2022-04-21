@@ -59,7 +59,7 @@
                               <Insets top="40.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onMouseClicked="#signin" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Sign in">
+                        <Button fx:id="signinbtn" mnemonicParsing="false" onMouseClicked="#signin" onMousePressed="#signinpressed" onMouseReleased="#signinreleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Sign in">
                            <VBox.margin>
                               <Insets top="40.0" />
                            </VBox.margin>

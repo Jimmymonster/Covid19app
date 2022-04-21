@@ -1,15 +1,12 @@
 package app.covid19app;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -23,6 +20,8 @@ public class SignInPageController implements Initializable {
     private Text error;
     @FXML
     private PasswordField password;
+    @FXML
+    private Button signinbtn;
     @FXML
     private TextField username;
     @FXML
@@ -41,6 +40,11 @@ public class SignInPageController implements Initializable {
             ResultSet resultSet = statement.executeQuery("select * from UserAccount where Username = '"+username+"' and Password = '"+password+"'");
             if(resultSet.next()){
                 String rank=resultSet.getString(3);
+                //set user data
+                User u = new User(username);
+                UserHolder holder = UserHolder.getInstance();
+                holder.setUser(u);
+
                 if(rank.equals("Admin")){
                     //go to Admin page
                     Covid19App.switchScene("MainPageAdmin.fxml");
@@ -64,6 +68,25 @@ public class SignInPageController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void signinpressed(MouseEvent event) {
+        signinbtn.setStyle("-fx-font-family: Quicksand;" +
+                "-fx-font-weight: bold;" +
+                "-fx-font-size: 14;" +
+                "-fx-background-color: #376bab;" +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 100px;");
+    }
+    @FXML
+    void signinreleased(MouseEvent event) {
+        signinbtn.setStyle("-fx-font-family: Quicksand;" +
+                "-fx-font-weight: bold;" +
+                "-fx-font-size: 14;" +
+                "-fx-background-color: #4F8EDB;" +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 100px;");
+    }
+
     @FXML
     void signup(MouseEvent event) {
         Covid19App.switchScene("SignUpPage.fxml");

@@ -2,6 +2,7 @@ package app.covid19app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +18,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class SignUpPageController implements Initializable {
+    @FXML
+    private Button signupbtn;
     @FXML
     private Text error;
     @FXML
@@ -118,6 +121,26 @@ public class SignUpPageController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void signuppressed(MouseEvent event) {
+        signupbtn.setStyle("-fx-font-family: Quicksand;" +
+                "-fx-font-weight: bold;" +
+                "-fx-font-size: 14;" +
+                "-fx-background-color: #376bab;" +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 100px;");
+    }
+
+    @FXML
+    void signupreleased(MouseEvent event) {
+        signupbtn.setStyle("-fx-font-family: Quicksand;" +
+                "-fx-font-weight: bold;" +
+                "-fx-font-size: 14;" +
+                "-fx-background-color: #4F8EDB;" +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 100px;");
+    }
+
     private boolean isInt(String name) {
         char[] chars = name.toCharArray();
         for (char c : chars) {
