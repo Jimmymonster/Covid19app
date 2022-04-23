@@ -14,28 +14,32 @@ import java.util.ResourceBundle;
 
 public class MainpageMemberController implements Initializable {
     private AnchorPane newsPane;
+    private AnchorPane infoPane;
+    private AnchorPane changeInfoPane;
     private String username;
     private String onhover = "-fx-background-color: #376bab;" +
-            "-fx-background-radius:  100 0 0 100;" +
+          //  "-fx-background-radius:  100 0 0 100;" +
             "-fx-font-family: Quicksand;" +
             "-fx-font-size: 26;" +
             "-fx-font-weight: bold;" +
             "-fx-text-fill: white;";
     private String unhover = "-fx-background-color: transparent;" +
-            "-fx-background-radius:  100 0 0 100;" +
+          //  "-fx-background-radius:  100 0 0 100;" +
             "-fx-font-family: Quicksand;" +
             "-fx-font-size: 26;" +
             "-fx-font-weight: bold;" +
             "-fx-text-fill: white;";
-    private int state=0; //0=news 1= info 2=treat 3=signout
-    @FXML private Button infomationbtn;
+    @FXML private Button informationbtn;
     @FXML private Button newsbtn;
     @FXML private Button signoutbtn;
     @FXML private Button treatmentbtn;
     @FXML private VBox content;
+    private FXMLLoader inforoot;
+    private FXMLLoader changeInforoot;
     @FXML void informationclicked(MouseEvent event) {
-        btnActive(infomationbtn);
+        btnActive(informationbtn);
         content.getChildren().clear();
+        content.getChildren().add(infoPane);
     }
     @FXML void newsclicked(MouseEvent event) {
         btnActive(newsbtn);
@@ -56,6 +60,20 @@ public class MainpageMemberController implements Initializable {
         try {
             FXMLLoader root = new FXMLLoader(Covid19App.class.getResource("NewsPane.fxml"));
             newsPane=root.load();
+            inforoot = new FXMLLoader(Covid19App.class.getResource("InformationPane.fxml"));
+            infoPane= inforoot.load();
+            changeInforoot = new FXMLLoader(Covid19App.class.getResource("ChangeInfoPage.fxml"));
+            changeInfoPane = changeInforoot.load();
+            InformationPaneController informationPaneController = (InformationPaneController) inforoot.getController();
+            informationPaneController.btn.setOnAction(e->{
+                content.getChildren().clear();
+                content.getChildren().add(changeInfoPane);
+            });
+            ChangeInfoPageController changeInfoPageController = (ChangeInfoPageController) changeInforoot.getController();
+            changeInfoPageController.btn.setOnAction(e->{
+                content.getChildren().clear();
+                content.getChildren().add(infoPane);
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,6 +82,7 @@ public class MainpageMemberController implements Initializable {
         UserHolder holder = UserHolder.getInstance();
         User u = holder.getUser();
         username = u.getUsername();
+
     }
     private void btnActive(Button btn){
         setbtn();
@@ -71,15 +90,15 @@ public class MainpageMemberController implements Initializable {
         btn.setStyle(onhover);
     }
     private void setbtn(){
-        infomationbtn.setStyle(unhover);
+        informationbtn.setStyle(unhover);
         newsbtn.setStyle(unhover);
         signoutbtn.setStyle(unhover);
         treatmentbtn.setStyle(unhover);
-        infomationbtn.setOnMouseEntered(e->{
-            infomationbtn.setStyle(onhover);
+        informationbtn.setOnMouseEntered(e->{
+            informationbtn.setStyle(onhover);
         });
-        infomationbtn.setOnMouseExited(e->{
-            infomationbtn.setStyle(unhover);
+        informationbtn.setOnMouseExited(e->{
+            informationbtn.setStyle(unhover);
         });
         newsbtn.setOnMouseEntered(e->{
             newsbtn.setStyle(onhover);

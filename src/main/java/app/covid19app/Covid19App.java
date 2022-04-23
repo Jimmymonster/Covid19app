@@ -10,8 +10,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Covid19App extends Application {
-    static FXMLLoader root =new FXMLLoader(Covid19App.class.getResource("SignInPage.fxml"));
-    static Scene scene;
+    private static FXMLLoader root =new FXMLLoader(Covid19App.class.getResource("SignInPage.fxml"));
+    private static Scene scene;
     static {
         try {
             scene = new Scene(root.load(),1280,720);
