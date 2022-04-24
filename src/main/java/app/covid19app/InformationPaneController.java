@@ -48,17 +48,17 @@ public class InformationPaneController implements Initializable {
     @FXML void btnpressed(MouseEvent event) {
         btn.setStyle("-fx-font-family: Quicksand;" +
                 "-fx-font-weight: bold;" +
-                "-fx-font-size: 14;" +
-                "-fx-background-color: #d9d9d9;" +
-                "-fx-text-fill: #4F8EDB;" +
+                "-fx-font-size: 16;" +
+                "-fx-background-color: #376bab;" +
+                "-fx-text-fill: white;" +
                 "-fx-background-radius: 100px;");
     }
     @FXML void btnreleased(MouseEvent event) {
         btn.setStyle("-fx-font-family: Quicksand;" +
                 "-fx-font-weight: bold;" +
-                "-fx-font-size: 14;" +
-                "-fx-background-color: white;" +
-                "-fx-text-fill: #4F8EDB;" +
+                "-fx-font-size: 16;" +
+                "-fx-background-color: #4F8EDB;" +
+                "-fx-text-fill: white;" +
                 "-fx-background-radius: 100px;");
     }
     @Override

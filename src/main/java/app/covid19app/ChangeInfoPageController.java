@@ -52,15 +52,15 @@ public class ChangeInfoPageController implements Initializable {
     @FXML public Text error;
     private String pressed = "-fx-font-family: Quicksand;" +
             "-fx-font-weight: bold;" +
-            "-fx-font-size: 14;" +
-            "-fx-background-color: #d9d9d9;" +
-            "-fx-text-fill: #4F8EDB;" +
+            "-fx-font-size: 16;" +
+            "-fx-background-color: #376bab;" +
+            "-fx-text-fill: white;" +
             "-fx-background-radius: 100px;";
     private String released = "-fx-font-family: Quicksand;" +
             "-fx-font-weight: bold;" +
-            "-fx-font-size: 14;" +
-            "-fx-background-color: white;" +
-            "-fx-text-fill: #4F8EDB;" +
+            "-fx-font-size: 16;" +
+            "-fx-background-color: #4F8EDB;" +
+            "-fx-text-fill: white;" +
             "-fx-background-radius: 100px;";
     @FXML void backpressed(MouseEvent event) {backbtn.setStyle(pressed);}
     @FXML void backreleased(MouseEvent event) {backbtn.setStyle(released);}
@@ -89,6 +89,9 @@ public class ChangeInfoPageController implements Initializable {
     @FXML void uploadreleased(MouseEvent event) {uploadpic.setStyle(released);}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        reset();
+    }
+    public void reset(){
         UserHolder holder = UserHolder.getInstance();
         User u = holder.getUser();
         username = u.getUsername();
@@ -121,7 +124,7 @@ public class ChangeInfoPageController implements Initializable {
             numberid.setText(numberiddb);
             tel.setText(teldb);
             address.setText(addressdb);
-           if(imgAddress==null||imgAddress.equals("null")||imgAddress.isEmpty()||imgAddress.isBlank()){
+            if(imgAddress==null||imgAddress.equals("null")||imgAddress.isEmpty()||imgAddress.isBlank()){
                 try {
                     FileInputStream input = new FileInputStream("src\\main\\userImages\\missing_user_img.jpg");
                     userimg.setImage(new Image(input));
@@ -131,7 +134,7 @@ public class ChangeInfoPageController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-           }
+            }
             else{
                 try {
                     FileInputStream input = new FileInputStream(imgAddress);
@@ -142,7 +145,7 @@ public class ChangeInfoPageController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-           }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -76,6 +76,7 @@ public class MainpageMemberController implements Initializable {
             });
             ChangeInfoPageController changeInfoPageController = (ChangeInfoPageController) changeInforoot.getController();
             changeInfoPageController.backbtn.setOnAction(e->{
+                changeInfoPageController.reset();
                 content.getChildren().clear();
                 content.getChildren().add(infoPane);
             });
