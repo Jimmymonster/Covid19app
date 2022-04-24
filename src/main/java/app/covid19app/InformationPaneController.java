@@ -62,6 +62,9 @@ public class InformationPaneController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+       update();
+    }
+    public void update(){
         UserHolder holder = UserHolder.getInstance();
         User u = holder.getUser();
         username = u.getUsername();
@@ -84,6 +87,7 @@ public class InformationPaneController implements Initializable {
             else{
                 System.out.println("Error missing data!?!?");
             }
+            connection.close();
             name.setText(namedb);
             surname.setText(surnamedb);
             age.setText(agedb);
@@ -93,7 +97,7 @@ public class InformationPaneController implements Initializable {
             numberid.setText(numberiddb);
             tel.setText(teldb);
             address.setText(addressdb);
-            if(imgAddress==null||imgAddress.isBlank()||imgAddress.isEmpty()){
+            if(imgAddress==null||imgAddress.equals("null")||imgAddress.isEmpty()||imgAddress.isBlank()){
                 try {
                     FileInputStream input = new FileInputStream("src\\main\\userImages\\missing_user_img.jpg");
                     userimg.setImage(new Image(input));

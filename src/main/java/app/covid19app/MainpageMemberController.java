@@ -10,6 +10,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class MainpageMemberController implements Initializable {
@@ -70,8 +73,53 @@ public class MainpageMemberController implements Initializable {
                 content.getChildren().add(changeInfoPane);
             });
             ChangeInfoPageController changeInfoPageController = (ChangeInfoPageController) changeInforoot.getController();
-            changeInfoPageController.btn.setOnAction(e->{
+            changeInfoPageController.backbtn.setOnAction(e->{
                 content.getChildren().clear();
+                content.getChildren().add(infoPane);
+            });
+            changeInfoPageController.savebtn.setOnAction(e->{
+                changeInfoPageController.error.setText("");
+                //check
+                if(changeInfoPageController.name.getText().isBlank()||changeInfoPageController.name.getText().isEmpty()||
+                        changeInfoPageController.surname.getText().isBlank()||changeInfoPageController.surname.getText().isEmpty()||
+                        changeInfoPageController.age.getText().isBlank()||changeInfoPageController.age.getText().isEmpty()||
+                        changeInfoPageController.tel.getText().isEmpty()||changeInfoPageController.tel.getText().isBlank()||
+                        changeInfoPageController.address.getText().isEmpty()||changeInfoPageController.address.getText().isBlank()){
+                    changeInfoPageController.error.setText("Each field must be fill!!!");
+                    return;
+                }
+                else if(!isAlpha(changeInfoPageController.name.getText())){
+                    changeInfoPageController.error.setText("Name must not contain digits!!!");
+                    return;
+                }
+                else if(!isAlpha(changeInfoPageController.surname.getText())){
+                    changeInfoPageController.error.setText("Surname must not contain digits!!!");
+                    return;
+                }
+                else if(!isInt(changeInfoPageController.age.getText())){
+                    changeInfoPageController.error.setText("Age must be number!!!");
+                    return;
+                }
+                else if(!isInt(changeInfoPageController.tel.getText())){
+                    changeInfoPageController.error.setText("Telephone number must be number!!!");
+                    return;
+                }
+                Connection connection = DbConnect.getInstance().getConnection();
+                try {
+                    Statement statement = connection.createStatement();
+                    int status = statement.executeUpdate("update UserInfo set Name = '"+changeInfoPageController.name.getText()+"'," +
+                            "Surname = '"+changeInfoPageController.surname.getText()+"'," +
+                            "Age = '"+changeInfoPageController.age.getText()+"'," +
+                            "Tel = '"+changeInfoPageController.tel.getText()+"'," +
+                            "Address = '"+changeInfoPageController.address.getText()+"'," +
+                            "ImgAddress = '"+changeInfoPageController.imgAddresstmp+"'" +
+                            "where username = '"+username+"'");
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                content.getChildren().clear();
+                informationPaneController.update();
                 content.getChildren().add(infoPane);
             });
         } catch (IOException e) {
@@ -118,5 +166,23 @@ public class MainpageMemberController implements Initializable {
         treatmentbtn.setOnMouseExited(e->{
             treatmentbtn.setStyle(unhover);
         });
+    }
+    private boolean isInt(String name) {
+        char[] chars = name.toCharArray();
+        for (char c : chars) {
+            if(!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isAlpha(String name) {
+        char[] chars = name.toCharArray();
+        for (char c : chars) {
+            if(!Character.isLetter(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
