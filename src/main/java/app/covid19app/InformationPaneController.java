@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -101,7 +102,10 @@ public class InformationPaneController implements Initializable {
                 try {
                     FileInputStream input = new FileInputStream("src\\main\\userImages\\missing_user_img.jpg");
                     userimg.setImage(new Image(input));
+                    input.close();
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -109,7 +113,10 @@ public class InformationPaneController implements Initializable {
                 try {
                     FileInputStream input = new FileInputStream(imgAddress);
                     userimg.setImage(new Image(input));
+                    input.close();
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

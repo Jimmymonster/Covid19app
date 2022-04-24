@@ -2,15 +2,20 @@ package app.covid19app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -62,7 +67,23 @@ public class ChangeInfoPageController implements Initializable {
     @FXML void savepressed(MouseEvent event) {savebtn.setStyle(pressed);}
     @FXML void savereleased(MouseEvent event) {savebtn.setStyle(released);}
     @FXML void uploadclicked(MouseEvent event) {
-
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if(selectedFile!=null){
+            imgAddresstmp=selectedFile.getPath();
+            try {
+                FileInputStream input = new FileInputStream(imgAddresstmp);
+                userimg.setImage(new Image(input));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("error");
+        }
     }
     @FXML void uploadpressed(MouseEvent event) {uploadpic.setStyle(pressed);}
     @FXML void uploadreleased(MouseEvent event) {uploadpic.setStyle(released);}
@@ -104,18 +125,24 @@ public class ChangeInfoPageController implements Initializable {
                 try {
                     FileInputStream input = new FileInputStream("src\\main\\userImages\\missing_user_img.jpg");
                     userimg.setImage(new Image(input));
+                    input.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            }
+           }
             else{
                 try {
                     FileInputStream input = new FileInputStream(imgAddress);
                     userimg.setImage(new Image(input));
+                    input.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            }
+           }
         } catch (SQLException e) {
             e.printStackTrace();
         }

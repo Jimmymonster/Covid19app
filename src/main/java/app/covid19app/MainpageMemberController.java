@@ -8,8 +8,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -103,6 +105,16 @@ public class MainpageMemberController implements Initializable {
                 else if(!isInt(changeInfoPageController.tel.getText())){
                     changeInfoPageController.error.setText("Telephone number must be number!!!");
                     return;
+                }
+                if(changeInfoPageController.imgAddresstmp!=null){
+                    File src = new File(changeInfoPageController.imgAddresstmp);
+                    File dest = new File("src\\main\\userImages\\"+username+".jpg");
+                    try {
+                        Files.copy(src.toPath(),dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    changeInfoPageController.imgAddresstmp="src\\main\\userImages\\"+username+".jpg";
                 }
                 Connection connection = DbConnect.getInstance().getConnection();
                 try {
