@@ -25,7 +25,7 @@
                         <DropShadow />
                      </effect>
                   </ImageView>
-                  <Button fx:id="uploadpic" mnemonicParsing="false" onMouseClicked="#uploadclicked" onMousePressed="#uploadpressed" onMouseReleased="#uploadreleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 16; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Upload Picture">
+                  <Button fx:id="uploadpic" mnemonicParsing="false" onMouseClicked="#uploadclicked" onMousePressed="#uploadpressed" onMouseReleased="#uploadreleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Upload Picture">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -142,12 +142,12 @@
                   <Text fx:id="error" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red; -fx-font-size: 14; -fx-font-weight: bold;" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="savebtn" mnemonicParsing="false" onMousePressed="#savepressed" onMouseReleased="#savereleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 16; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Save">
+                        <Button fx:id="savebtn" mnemonicParsing="false" onMousePressed="#savepressed" onMouseReleased="#savereleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Save">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="backbtn" mnemonicParsing="false" onMousePressed="#backpressed" onMouseReleased="#backreleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 16; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Back">
+                        <Button fx:id="backbtn" mnemonicParsing="false" onMousePressed="#backpressed" onMouseReleased="#backreleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Back">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>

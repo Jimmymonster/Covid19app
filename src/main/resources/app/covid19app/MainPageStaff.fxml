@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/17.0.1"
-            fx:controller="app.covid19app.MainPageStaffController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.covid19app.MainPageStaffController">
+   <children>
+      <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #4F8EDB;">
+                     <children>
+                        <Button fx:id="allrecordbtn" mnemonicParsing="false" onMouseClicked="#allrecordclicked" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: transparent; -fx-background-radius: 100 0 0 100; -fx-font-family: Quicksand; -fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: white;" text="All records" textFill="WHITE" />
+                        <Button fx:id="recoveringbtn" mnemonicParsing="false" onMouseClicked="#recoveringclicked" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: transparent; -fx-background-radius: 100 0 0 100; -fx-font-family: Quicksand; -fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: white;" text="Recovering Records" textFill="WHITE" />
+                        <Button fx:id="curedbtn" mnemonicParsing="false" onMouseClicked="#curedclicked" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: transparent; -fx-background-radius: 100 0 0 100; -fx-font-family: Quicksand; -fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: white;" text="Cured Records" textFill="WHITE" />
+                        <Button fx:id="signoutbtn" mnemonicParsing="false" onMouseClicked="#signoutclicked" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: transparent; -fx-background-radius: 100 0 0 100; -fx-font-family: Quicksand; -fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: white;" text="Sign out" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="content" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
 </AnchorPane>

@@ -52,13 +52,13 @@ public class ChangeInfoPageController implements Initializable {
     @FXML public Text error;
     private String pressed = "-fx-font-family: Quicksand;" +
             "-fx-font-weight: bold;" +
-            "-fx-font-size: 16;" +
+            "-fx-font-size: 20;" +
             "-fx-background-color: #376bab;" +
             "-fx-text-fill: white;" +
             "-fx-background-radius: 100px;";
     private String released = "-fx-font-family: Quicksand;" +
             "-fx-font-weight: bold;" +
-            "-fx-font-size: 16;" +
+            "-fx-font-size: 20;" +
             "-fx-background-color: #4F8EDB;" +
             "-fx-text-fill: white;" +
             "-fx-background-radius: 100px;";

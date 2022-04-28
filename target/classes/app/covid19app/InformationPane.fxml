@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,87 +14,34 @@
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #4F8EDB;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fx:id="userimg" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </ImageView>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Name : " />
-                              <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Name : " />
+                              <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                            </children>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Surname : " />
-                              <Text fx:id="surname" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
-                           </children>
-                        </HBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Age : " />
-                              <Text fx:id="age" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Surname : " />
+                              <Text fx:id="surname" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                            </children>
                            <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Gender : " />
-                              <Text fx:id="gender" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="BirthDate : " />
-                              <Text fx:id="birthdate" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="BloodGroup : " />
-                              <Text fx:id="bloodgroup" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
-                           </children>
-                        </HBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Number ID : " />
-                              <Text fx:id="numberid" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Tel. : " />
-                              <Text fx:id="tel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </HBox.margin>
                         </HBox>
                      </children>
@@ -103,13 +51,40 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Address : " />
-                              <Text fx:id="address" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Age : " />
+                              <Text fx:id="age" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                            </children>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Gender : " />
+                              <Text fx:id="gender" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="BirthDate : " />
+                              <Text fx:id="birthdate" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="BloodGroup : " />
+                              <Text fx:id="bloodgroup" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </HBox.margin>
                         </HBox>
                      </children>
@@ -117,7 +92,48 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button fx:id="btn" mnemonicParsing="false" onMouseClicked="#btnclicked" onMousePressed="#btnpressed" onMouseReleased="#btnreleased" prefHeight="25.0" prefWidth="180.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: white; -fx-text-fill: #4F8EDB; -fx-background-radius: 100px;" text="Edit Information">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Number ID : " />
+                              <Text fx:id="numberid" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Tel. : " />
+                              <Text fx:id="tel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="300.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #a2a2a2;" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Address : " />
+                              <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button fx:id="btn" mnemonicParsing="false" onMouseClicked="#btnclicked" onMousePressed="#btnpressed" onMouseReleased="#btnreleased" prefHeight="44.0" prefWidth="199.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-font-size: 20; -fx-background-color: #4F8EDB; -fx-text-fill: white; -fx-background-radius: 100px;" text="Edit Information">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>

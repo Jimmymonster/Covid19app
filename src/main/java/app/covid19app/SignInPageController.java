@@ -45,11 +45,7 @@ public class SignInPageController implements Initializable {
                 UserHolder holder = UserHolder.getInstance();
                 holder.setUser(u);
 
-                if(rank.equals("Admin")){
-                    //go to Admin page
-                    Covid19App.switchScene("MainPageAdmin.fxml");
-                }
-                else if(rank.equals("Staff")){
+                if(rank.equals("Staff")){
                     //go to Staff page
                     Covid19App.switchScene("MainPageStaff.fxml");
                 }

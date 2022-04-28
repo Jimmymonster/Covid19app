@@ -21,6 +21,7 @@ public class MainpageMemberController implements Initializable {
     private AnchorPane newsPane;
     private AnchorPane infoPane;
     private AnchorPane changeInfoPane;
+    private AnchorPane treatmentPane;
     private String username;
     private String onhover = "-fx-background-color: #376bab;" +
           //  "-fx-background-radius:  100 0 0 100;" +
@@ -57,6 +58,7 @@ public class MainpageMemberController implements Initializable {
     }@FXML
     void treatmentclicked(MouseEvent event) {
         content.getChildren().clear();
+        content.getChildren().add(treatmentPane);
         btnActive(treatmentbtn);
     }
     @Override
@@ -69,6 +71,8 @@ public class MainpageMemberController implements Initializable {
             infoPane= inforoot.load();
             changeInforoot = new FXMLLoader(Covid19App.class.getResource("ChangeInfoPage.fxml"));
             changeInfoPane = changeInforoot.load();
+            root = new FXMLLoader(Covid19App.class.getResource("TreatmentPane.fxml"));
+            treatmentPane=root.load();
             InformationPaneController informationPaneController = (InformationPaneController) inforoot.getController();
             informationPaneController.btn.setOnAction(e->{
                 content.getChildren().clear();
@@ -103,8 +107,20 @@ public class MainpageMemberController implements Initializable {
                     changeInfoPageController.error.setText("Age must be number!!!");
                     return;
                 }
+                else if(changeInfoPageController.age.getText().length()>3){
+                    changeInfoPageController.error.setText("Your age is too high!!!");
+                    return;
+                }
                 else if(!isInt(changeInfoPageController.tel.getText())){
                     changeInfoPageController.error.setText("Telephone number must be number!!!");
+                    return;
+                }
+                else if(changeInfoPageController.tel.getText().length()>20){
+                    changeInfoPageController.error.setText("Your telephone number is too long!!!");
+                    return;
+                }
+                else if(changeInfoPageController.address.getText().length()>110){
+                    changeInfoPageController.error.setText("Your address is too long!!!");
                     return;
                 }
                 if(changeInfoPageController.imgAddresstmp!=null){

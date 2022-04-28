@@ -81,6 +81,10 @@ public class SignUpPageController implements Initializable {
                 error2.setText("Age must be number!!!");
                 ch=false;
             }
+            else if(age.length()>3){
+                error2.setText("Your age is too high!!!");
+                ch=false;
+            }
             else if(!isInt(numberid)){
                 error2.setText("Number ID must be number!!!");
                 ch=false;
@@ -101,8 +105,16 @@ public class SignUpPageController implements Initializable {
                 error2.setText("Telephone number must be number!!!");
                 ch=false;
             }
+            else if(tel.length()>20){
+                error2.setText("Your telephone number is too long!!!");
+                ch=false;
+            }
             else if(!chBloodgroup(bloodgroup)){
                 error2.setText("Blood Group must be A B AB O (Upper case only)!!!");
+                ch=false;
+            }
+            else if(address.length()>110){
+                error2.setText("Your address is too long!!!");
                 ch=false;
             }
             Statement statement = connection.createStatement();
@@ -116,8 +128,8 @@ public class SignUpPageController implements Initializable {
                 return;
             }
             int status = statement.executeUpdate("insert into UserAccount (Username,Password,Rank) values('"+username+"','"+password+"','Member')");
-            int status2 = statement.executeUpdate("insert into UserInfo (Username,Name,Surname,Age,Gender,BirthDate,BloodGroup,NumberID,Tel,Address) " +
-                    "values('"+username+"','"+name+"','"+surname+"','"+age+"','"+gender+"','"+birthdate+"','"+bloodgroup+"','"+numberid+"','"+tel+"','"+address+"')");
+            int status2 = statement.executeUpdate("insert into UserInfo (Username,Name,Surname,Age,Gender,BirthDate,BloodGroup,NumberID,Tel,Address,status) " +
+                    "values('"+username+"','"+name+"','"+surname+"','"+age+"','"+gender+"','"+birthdate+"','"+bloodgroup+"','"+numberid+"','"+tel+"','"+address+"','diagnosis')");
             if(status>0&&status2>0){
                 System.out.println("Registered!!!");
                 Covid19App.switchScene("SignInPage.fxml");
