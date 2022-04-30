@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -18,30 +21,19 @@
                      <content>
                         <VBox fx:id="recordbox" prefHeight="100.0" prefWidth="1255.0">
                            <children>
-                              <HBox prefHeight="40.0" prefWidth="1255.0">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 2px 1px 1px 1px;" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="Name" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 2px 1px 1px 1px;" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="Surname" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 2px 1px 1px 1px;" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="Status" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 2px 1px 1px 1px;" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="Action" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
+                              <TextField fx:id="searchbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="500.0" promptText="Search">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TableView fx:id="table" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0">
+                                <columns>
+                                  <TableColumn fx:id="namecol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Name" />
+                                    <TableColumn fx:id="surnamecol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Surname" />
+                                    <TableColumn fx:id="statuscol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Status" />
+                                    <TableColumn fx:id="actioncol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Action" />
+                                </columns>
+                              </TableView>
                            </children></VBox>
                      </content>
                   </ScrollPane>

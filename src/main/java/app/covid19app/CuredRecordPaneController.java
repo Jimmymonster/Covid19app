@@ -5,7 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
@@ -16,8 +19,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class AllRecordPaneController implements Initializable {
-    @FXML private TableColumn<Data, Button> actioncol;
+public class CuredRecordPaneController implements Initializable {
+    @FXML
+    private TableColumn<Data, Button> actioncol;
     @FXML private TableColumn<Data, String> namecol;
     @FXML private TableColumn<Data, String> statuscol;
     @FXML private TableColumn<Data, String> surnamecol;
@@ -39,7 +43,7 @@ public class AllRecordPaneController implements Initializable {
         Connection connection = DbConnect.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from UserInfo order by Name ASC");
+            ResultSet resultSet = statement.executeQuery("select * from UserInfo where status = 'cured' order by Name ASC");
             while(resultSet.next()) {
                 String username = resultSet.getString(1);
                 //infomation
@@ -61,7 +65,7 @@ public class AllRecordPaneController implements Initializable {
         }
         if(i==0) table.setPrefHeight(80);
         else table.setPrefHeight(i*40+40);
-        FilteredList<Data> filteredList = new FilteredList<>(observableList,a->true);
+        FilteredList<Data> filteredList = new FilteredList<>(observableList, a->true);
         searchbox.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(Data -> {
                 // If filter text is empty, display all persons.

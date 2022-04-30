@@ -10,13 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.covid19app.AllRecordPaneController">
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.covid19app.DiagnosisRecordPaneController">
    <children>
-      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="All Records" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="Wait for diagnosis Records" />
                   <ScrollPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <content>
                         <VBox fx:id="recordbox" prefHeight="100.0" prefWidth="1255.0">
@@ -27,14 +28,15 @@
                                  </VBox.margin>
                               </TextField>
                               <TableView fx:id="table" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0">
-                                <columns>
-                                  <TableColumn fx:id="namecol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Name" />
+                                 <columns>
+                                    <TableColumn fx:id="namecol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Name" />
                                     <TableColumn fx:id="surnamecol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Surname" />
                                     <TableColumn fx:id="statuscol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Status" />
                                     <TableColumn fx:id="actioncol" editable="false" prefWidth="313.0" resizable="false" style="-fx-font-size: 20; -fx-alignment: CENTER;" text="Action" />
-                                </columns>
+                                 </columns>
                               </TableView>
-                           </children></VBox>
+                           </children>
+                        </VBox>
                      </content>
                   </ScrollPane>
                </children>
