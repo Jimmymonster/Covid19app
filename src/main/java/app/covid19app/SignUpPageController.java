@@ -130,7 +130,8 @@ public class SignUpPageController implements Initializable {
             int status = statement.executeUpdate("insert into UserAccount (Username,Password,Rank) values('"+username+"','"+password+"','Member')");
             int status2 = statement.executeUpdate("insert into UserInfo (Username,Name,Surname,Age,Gender,BirthDate,BloodGroup,NumberID,Tel,Address,status) " +
                     "values('"+username+"','"+name+"','"+surname+"','"+age+"','"+gender+"','"+birthdate+"','"+bloodgroup+"','"+numberid+"','"+tel+"','"+address+"','diagnosis')");
-            if(status>0&&status2>0){
+            int status3 = statement.executeUpdate("insert into UserTreatment (Username) values('"+username+"')");
+            if(status>0&&status2>0&&status3>0){
                 System.out.println("Registered!!!");
                 Covid19App.switchScene("SignInPage.fxml");
             }

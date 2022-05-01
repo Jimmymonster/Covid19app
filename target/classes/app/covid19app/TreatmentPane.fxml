@@ -15,38 +15,47 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Checked In:" />
-                        <Text fx:id="name12" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="พบโควิดตั้งแต่วันที่ :" />
+                        <Text fx:id="firstdate" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Stay In Hospitol For:" />
-                        <Text fx:id="name121" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="สถานที่กักตัว :" />
+                        <Text fx:id="location" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Medicine:" />
-                        <Text fx:id="name1211" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="ระยะเวลากักตัว :" />
+                        <Text fx:id="quarantine" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="Patient Description:" />
-                        <Text fx:id="name1212" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="ยารักษา และ วิธีรับประทาน :" />
+                        <Text fx:id="medicine" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand;" text="รายละเอียดเพิ่มเติม :" />
+                        <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-family: Quicksand; -fx-font-weight: bold;" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </VBox.margin>
                   </HBox>
                </children>

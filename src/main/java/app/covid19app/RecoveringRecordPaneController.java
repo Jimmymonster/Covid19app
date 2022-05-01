@@ -5,11 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -28,17 +30,16 @@ public class RecoveringRecordPaneController implements Initializable {
     @FXML private TextField searchbox;
     @FXML private TableView<Data> table;
     private final ObservableList<Data> observableList= FXCollections.observableArrayList();
-    String[] usernamelist = new String[10000];
-    Data[] datalist = new Data[10000];
-    Button[] btn = new Button[10000];
+    public String[] usernamelist = new String[10000];
+    private Data[] datalist = new Data[10000];
+    public Button[][] btn = new Button[10000][2];
+    public int i=0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         namecol.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnamecol.setCellValueFactory(new PropertyValueFactory<>("surname"));
         statuscol.setCellValueFactory(new PropertyValueFactory<>("status"));
         actioncol.setCellValueFactory(new PropertyValueFactory<>("button"));
-
-        int i=0;
         Connection connection = DbConnect.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
@@ -51,10 +52,16 @@ public class RecoveringRecordPaneController implements Initializable {
                 String surname = resultSet.getString(3);
                 String status = resultSet.getString(13);
                 if (status.equals("diagnosis")) status = "wait for diagnosis";
-                btn[i]=new Button("Edit case");
-                btn[i].setStyle("-fx-background-radius: 100px;" +
+                btn[i][0]=new Button("User Info");
+                btn[i][0].setStyle("-fx-background-radius: 100px;" +
                         "-fx-font-size: 14;");
-                datalist[i] = new Data(name,surname,status,btn[i]);
+                btn[i][1]=new Button("Edit Case");
+                btn[i][1].setStyle("-fx-background-radius: 100px;" +
+                        "-fx-font-size: 14;");
+                HBox tmp = new HBox(10);
+                tmp.getChildren().addAll(btn[i]);
+                tmp.setAlignment(Pos.CENTER);
+                datalist[i] = new Data(name,surname,status,tmp);
                 observableList.add(datalist[i]);
 
                 i++;

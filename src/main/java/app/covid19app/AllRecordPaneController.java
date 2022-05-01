@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -17,7 +19,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class AllRecordPaneController implements Initializable {
-    @FXML private TableColumn<Data, Button> actioncol;
+    @FXML private TableColumn<Data, HBox> actioncol;
     @FXML private TableColumn<Data, String> namecol;
     @FXML private TableColumn<Data, String> statuscol;
     @FXML private TableColumn<Data, String> surnamecol;
@@ -25,9 +27,10 @@ public class AllRecordPaneController implements Initializable {
     @FXML private TextField searchbox;
     @FXML private TableView<Data> table;
     private final ObservableList<Data> observableList= FXCollections.observableArrayList();
-    String[] usernamelist = new String[10000];
-    Data[] datalist = new Data[10000];
-    Button[] btn = new Button[10000];
+    public String[] usernamelist = new String[10000];
+    private Data[] datalist = new Data[10000];
+    public Button[][] btn = new Button[10000][2];
+    public int i=0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         namecol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -35,7 +38,6 @@ public class AllRecordPaneController implements Initializable {
         statuscol.setCellValueFactory(new PropertyValueFactory<>("status"));
         actioncol.setCellValueFactory(new PropertyValueFactory<>("button"));
 
-        int i=0;
         Connection connection = DbConnect.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
@@ -48,10 +50,16 @@ public class AllRecordPaneController implements Initializable {
                 String surname = resultSet.getString(3);
                 String status = resultSet.getString(13);
                 if (status.equals("diagnosis")) status = "wait for diagnosis";
-                btn[i]=new Button("Edit case");
-                btn[i].setStyle("-fx-background-radius: 100px;" +
+                btn[i][0]=new Button("User Info");
+                btn[i][0].setStyle("-fx-background-radius: 100px;" +
                         "-fx-font-size: 14;");
-                datalist[i] = new Data(name,surname,status,btn[i]);
+                btn[i][1]=new Button("Edit Case");
+                btn[i][1].setStyle("-fx-background-radius: 100px;" +
+                        "-fx-font-size: 14;");
+                HBox tmp = new HBox(10);
+                tmp.getChildren().addAll(btn[i]);
+                tmp.setAlignment(Pos.CENTER);
+                datalist[i] = new Data(name,surname,status,tmp);
                 observableList.add(datalist[i]);
 
                 i++;
