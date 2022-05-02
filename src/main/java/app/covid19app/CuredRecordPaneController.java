@@ -37,14 +37,19 @@ public class CuredRecordPaneController implements Initializable {
     public int i=0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        update();
+    }
+    public void update(){
         namecol.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnamecol.setCellValueFactory(new PropertyValueFactory<>("surname"));
         statuscol.setCellValueFactory(new PropertyValueFactory<>("status"));
         actioncol.setCellValueFactory(new PropertyValueFactory<>("button"));
+        observableList.clear();
+        i=0;
         Connection connection = DbConnect.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from UserInfo where status = 'cured' order by Name ASC");
+            ResultSet resultSet = statement.executeQuery("select * from UserInfo where status = 'cured' or status = 'death' order by Name ASC");
             while(resultSet.next()) {
                 String username = resultSet.getString(1);
                 //infomation
@@ -94,5 +99,4 @@ public class CuredRecordPaneController implements Initializable {
         });
         table.setItems(filteredList);
     }
-
 }

@@ -3,6 +3,7 @@ package app.covid19app;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
@@ -45,12 +46,18 @@ public class EditTreatmentPaneController implements Initializable {
     private String quarantine;
     private String medicine;
     private String description;
+    private String status;
+    @FXML public ComboBox combobox;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+        combobox.getItems().add("wait for diagnosis");
+        combobox.getItems().add("recovering");
+        combobox.getItems().add("cured");
+        combobox.getItems().add("death");
     }
     public void update(String username){
+        combobox.getSelectionModel().clearSelection();
+
         this.username = username;
         Connection connection = DbConnect.getInstance().getConnection();
         try {
@@ -67,6 +74,7 @@ public class EditTreatmentPaneController implements Initializable {
             resultSet = statement.executeQuery("select * from UserInfo where Username = '"+username+"'");
             if(resultSet.next()){
                 namesurnamefield.setText(resultSet.getString(2)+" "+resultSet.getString(3));
+                status = resultSet.getString(13);
             }
             connection.close();
             locationfield.setText(location);
@@ -74,6 +82,10 @@ public class EditTreatmentPaneController implements Initializable {
             quarantinefield.setText(quarantine);
             medicinefield.setText(medicine);
             descriptionfield.setText(description);
+            if(status.equals("diagnosis")) combobox.getSelectionModel().select(0);
+            else if(status.equals("recovering")) combobox.getSelectionModel().select(1);
+            else if(status.equals("cured")) combobox.getSelectionModel().select(2);
+            else if(status.equals("death")) combobox.getSelectionModel().select(3);
         } catch (SQLException e) {
             e.printStackTrace();
         }
