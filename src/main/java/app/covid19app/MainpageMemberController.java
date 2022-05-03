@@ -42,6 +42,8 @@ public class MainpageMemberController implements Initializable {
     @FXML private VBox content;
     private FXMLLoader inforoot;
     private FXMLLoader changeInforoot;
+    private FXMLLoader newsroot;
+    private NewsPaneController newsPaneController;
     @FXML void informationclicked(MouseEvent event) {
         btnActive(informationbtn);
         content.getChildren().clear();
@@ -49,6 +51,7 @@ public class MainpageMemberController implements Initializable {
     }
     @FXML void newsclicked(MouseEvent event) {
         btnActive(newsbtn);
+        newsPaneController.resetimage();
         content.getChildren().clear();
         content.getChildren().add(newsPane);
     }
@@ -65,14 +68,16 @@ public class MainpageMemberController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnActive(newsbtn);
         try {
-            FXMLLoader root = new FXMLLoader(Covid19App.class.getResource("NewsPane.fxml"));
-            newsPane=root.load();
+            newsroot = new FXMLLoader(Covid19App.class.getResource("NewsPane.fxml"));
+            newsPane=newsroot.load();
             inforoot = new FXMLLoader(Covid19App.class.getResource("InformationPane.fxml"));
             infoPane= inforoot.load();
             changeInforoot = new FXMLLoader(Covid19App.class.getResource("ChangeInfoPage.fxml"));
             changeInfoPane = changeInforoot.load();
-            root = new FXMLLoader(Covid19App.class.getResource("TreatmentPane.fxml"));
+            FXMLLoader root = new FXMLLoader(Covid19App.class.getResource("TreatmentPane.fxml"));
             treatmentPane=root.load();
+            newsPaneController=newsroot.getController();
+
             InformationPaneController informationPaneController = (InformationPaneController) inforoot.getController();
             informationPaneController.btn.setOnAction(e->{
                 content.getChildren().clear();

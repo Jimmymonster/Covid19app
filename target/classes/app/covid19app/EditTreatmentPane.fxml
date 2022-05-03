@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.covid19app.EditTreatmentPaneController">
    <children>
@@ -18,8 +18,19 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="แก้ไขข้อมูลของ " />
-                        <Text fx:id="namesurnamefield" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;" text="แก้ไขข้อมูลของ ">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin></Text>
+                        <Text fx:id="namesurnamefield" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 28; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #4F8EDB;">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin></Text>
+                        <ComboBox fx:id="combobox" prefWidth="150.0" visibleRowCount="4">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </ComboBox>
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
